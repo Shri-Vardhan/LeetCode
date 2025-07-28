@@ -1,0 +1,49 @@
+/*************************************************************
+* Author      : Shri
+* Copyright   : Open-source (for learning purposes)
+* Description : Maximum SubArray
+* Problem     : Given an integer array nums, find the subarray with the largest sum, and return its sum.
+* Constraints : 1 <= nums.length <= 10^5
+*               10^-4 <= nums[i] <= 10^4
+*************************************************************/
+BRUTEFORCE:
+int maxSubArray(int* nums, int numsSize) {
+    int sum,maxsum =nums[0]; 
+    for(int i =0 ; i< numsSize ; i++){
+        for(int j =i ; j< numsSize ; j++){
+            if (i==j){
+                sum = nums[i];
+            }
+            else {
+                sum = sum+nums[j];
+            }
+            if(sum>=maxsum){
+                maxsum = sum;
+            }
+        }
+    }
+    return maxsum;
+}
+
+OPTIMISED:
+int maxSubArray(int* nums, int numsSize) {
+    int sum = 0, max_sum = 0;
+
+    for (int i = 0; i < numsSize; i++) {
+        sum = sum + nums[i];
+
+        // Update max_sum before resetting sum, because if all elements are negative,
+        // we still want to keep track of the highest (least negative) value
+        if (sum > max_sum) {
+            max_sum = sum;
+        }
+
+        // If the current sum becomes negative, reset it to 0
+        // because adding a negative value will reduce the maximum subarray sum
+        if (sum < 0) {
+            sum = 0;
+        }
+    }
+
+    return max_sum;
+}
