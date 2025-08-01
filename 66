@@ -1,0 +1,49 @@
+/*************************************************************
+* Author      : Shri
+* Copyright   : Open-source (for learning purposes)
+* Description : Plus One
+* Problem     : You are given a large integer represented as an integer array digits, 
+*               where each digits[i] is the ith digit of the integer. 
+*               The digits are ordered from most significant to least significant. 
+*               Increment the large integer by one and return the resulting array of digits.
+*
+* Constraints : 1 <= digits.length <= 100
+*               0 <= digits[i] <= 9
+*               digits does not contain any leading 0s.
+*************************************************************/
+OPTIMISED
+
+class Solution {
+    int[] arr;  
+
+    public void carry(int index) {
+        for (int j = index - 1; j >= 0; j--) {
+            arr[j] += 1;
+            if (arr[j] <= 9) break;
+            else arr[j] = 0;
+        }
+    }
+
+    public int[] plusOne(int[] digits) {
+        this.arr = digits;  // assign input to instance variable
+
+        for (int i = 0; i < arr.length; i++) {
+            if (i == arr.length - 1) {
+                arr[i] += 1;
+            }
+            if (arr[i] > 9) {
+                arr[i] = 0;
+                carry(i);
+            }
+        }
+
+        if (arr[0] == 0) {
+            int[] result = new int[arr.length + 1];
+            result[0] = 1;
+            return result;
+        }
+
+        return arr;
+    }
+}
+	
