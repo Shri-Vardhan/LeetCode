@@ -6,7 +6,7 @@
 * Constraints : 1 <= nums.length <= 10^5
 *               10^-4 <= nums[i] <= 10^4
 *************************************************************/
-BRUTEFORCE:
+BRUTEFORCE:C
 int maxSubArray(int* nums, int numsSize) {
     int sum,maxsum =nums[0]; 
     for(int i =0 ; i< numsSize ; i++){
@@ -25,9 +25,9 @@ int maxSubArray(int* nums, int numsSize) {
     return maxsum;
 }
 
-OPTIMISED:
+OPTIMISED:C
 int maxSubArray(int* nums, int numsSize) {
-    int sum = 0, max_sum = 0;
+    int sum = nums[0], max_sum = nums[0];
 
     for (int i = 0; i < numsSize; i++) {
         sum = sum + nums[i];
