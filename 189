@@ -1,0 +1,38 @@
+/*************************************************************
+* Author      : Shri
+* Copyright   : Open-source (for learning purposes)
+* Description : Rotate Array
+* Problem     : Given an integer array nums, rotate the array to the right by k steps, 
+*               where k is non-negative.
+*
+* Constraints : 1 <= nums.length <= 10^5
+*               -2^31 <= nums[i] <= 2^31 - 1
+*               0 <= k <= 10^5
+*************************************************************/
+EXPLANATION
+REVERSE THE ENTIRE ARRAY
+REVERSE UNTIL K-1
+REVERSE FROM K TO END OF ARRAY
+EG: 123456 K=2
+STEP2: 654321
+STEP2: 65 4321(REVERSE FROM 0 TO K-1)
+	56 4321
+STEP3:56 1234(REVERSE FROM K TO END OF ARRAY)
+
+OPTIMISED:
+class Solution {
+    public void rotate(int[] nums, int k) {
+    reverse(nums , 0 , nums.length-1);
+    reverse(nums , 0 , k-1);
+    reverse(nums , k , nums.length-1);
+    }
+    public void reverse(int[] nums , int left , int right){
+        while (left < right) {
+            int temp = nums[left];
+            nums[left] = nums[right];
+            nums[right] = temp;
+            left++;
+            right--;
+        }
+    }
+}
